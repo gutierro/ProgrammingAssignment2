@@ -20,6 +20,7 @@ makeCacheMatrix <- function(x = matrix()) {
         ## it gets the inverse matrix 'm'.
         getInverse <- function() m
         
+        ## Assign the all the function to a list of objects
         list(set = set, get = get,
              setInverse = setInverse,
              getInverse = getInverse)       
@@ -27,7 +28,7 @@ makeCacheMatrix <- function(x = matrix()) {
 
 
 ## It returns the inverse of the special matrix object created with the function makeCacheMatrix
-cacheSolve <- function(x, ...) {
+cacheSolve <- function(x) {
         
         ## it gets the inverse from the cached object 'x' (special matrix) and checks if the inverse object 'x' is empty..
         m <- x$getInverse()
