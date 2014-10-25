@@ -6,19 +6,19 @@ makeCacheMatrix <- function(x = matrix()) {
         ## Initialize the inverse in the current environment
         m <- NULL
         
-        ## Funtion to set the Matrix and to initialize the inverse matrix 'm'.
+        ## it sets the matrix object 'x' and initializes the inverse matrix 'm'.
         set <- function(y) {
                 x <<- y
                 m <<- NULL
         }
         
-        ## Funtion to get the Matrix
+        ## it gets the matrix object 'x'
         get <- function() x
         
-        ## Funtion to set the inverse matrix 'm'.
+        ## it sets the inverse matrix 'm'.
         setInverse <- function(inverse) m <<- inverse
         
-        ## Get the inverse matrix 'm'.
+        ## it gets the inverse matrix 'm'.
         getInverse <- function() m
         
         list(set = set, get = get,
@@ -30,14 +30,17 @@ makeCacheMatrix <- function(x = matrix()) {
 ## It returns the inverse of the special matrix created with the function object makeCacheMatrix
 cacheSolve <- function(x, ...) {
         
-        ## Gets the inverse from the cached object 'x' and checks if not empty inverser.
+        ## it gets the inverse from the cached object 'x' (special matrix) and checks if the inverse object 'x' is empty..
         m <- x$getInverse()
         if(!is.null(m)) {
                 message("getting cached data")
                 return(m)
         }
-        ## If the cached object 'x' doesn't have and inverse then calculates the inverse and save it in the object 'x'.
+        ## If the inverse variable in the cached object 'x' is empty, 
+        ## it gets matrix value from object 'x' 
         data <- x$get()
+        
+        ## It calculates the inverse and save it in the object 'x' for next time .
         m <- solve(data)
         x$setInverse(m)
         m
